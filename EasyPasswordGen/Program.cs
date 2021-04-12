@@ -41,13 +41,11 @@ namespace EasyPasswordGen
             } catch (Exception e) { Console.WriteLine("Something went wrong\n" + e); }
         }
         
-        public static string GenSetOfChar() {
-            Random rnd = new Random(); //just create random 
-            using (SHA256 ts = SHA256.Create()) // just create 
-                return Convert.ToBase64String(ts.ComputeHash(Encoding.UTF8.GetBytes(rnd.Next().ToString())));
-            //just return hash function in string 
-            //if you know how to make it simplier 
-            //let me know please
-        }
+        public static string GenSetOfChar()
+            => Convert.ToBase64String(new SHA512Managed().ComputeHash
+                (Encoding.UTF8.GetBytes(new Random().Next().ToString())));//create random with byte array
+        //if you know how to make it simplier 
+        //let me know please
+       
     }
 }
